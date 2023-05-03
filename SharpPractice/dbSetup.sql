@@ -6,3 +6,19 @@ CREATE TABLE IF NOT EXISTS accounts(
   email varchar(255) COMMENT 'User Email',
   picture varchar(255) COMMENT 'User Picture'
 ) default charset utf8 COMMENT '';
+
+-- SECTION -- *Burgers*
+CREATE TABLE IF NOT EXISTS burgers(
+  id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+  creatorId VARCHAR(255) NOT NULL,
+  buns INT NOT NULL,
+  patties INT NOT NULL,
+  cheeseSlices INT DEFAULT 0,
+  onions BOOLEAN DEFAULT true,
+  pickles BOOLEAN DEFAULT false,
+  ketchup BOOLEAN DEFAULT true,
+  checkedOut BOOLEAN DEFAULT false,
+  specialRequest VARCHAR(500) DEFAULT '',
+
+  FOREIGN KEY (creatorId) REFERENCES accounts(id) ON DELETE CASCADE
+) default charset utf8mb4 COMMENT '';
