@@ -22,3 +22,25 @@ CREATE TABLE IF NOT EXISTS burgers(
 
   FOREIGN KEY (creatorId) REFERENCES accounts(id) ON DELETE CASCADE
 ) default charset utf8mb4 COMMENT '';
+
+-- SECTION -- *Drinks*
+CREATE TABLE IF NOT EXISTS drinks(
+  id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+  creatorId VARCHAR(255) NOT NULL,
+  flavor VARCHAR(255) NOT NULL,
+  size VARCHAR(20) NOT NULL,
+  checkedOut BOOLEAN DEFAULT false,
+
+  FOREIGN KEY (creatorId) REFERENCES accounts(id) ON DELETE CASCADE
+) default charset utf8mb4 COMMENT '';
+
+-- SECTION -- *Fries*
+CREATE TABLE IF NOT EXISTS fries(
+  id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+  creatorId VARCHAR(255),
+  type VARCHAR(255) NOT NULL,
+  size VARCHAR(20) NOT NULL,
+  checkedOut BOOLEAN DEFAULT false,
+
+  FOREIGN KEY (creatorId) REFERENCES accounts(id) ON DELETE CASCADE
+) default charset utf8mb4 COMMENT '';

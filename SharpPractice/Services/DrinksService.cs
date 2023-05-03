@@ -4,9 +4,16 @@ namespace SharpPractice.Services
   {
     private readonly DrinksRepository _repo;
 
-    internal List<Drink> GetMyDrinks(string id)
+    internal Drink CreateDrink(Drink drinkData)
     {
-      throw new NotImplementedException();
+      Drink drink = _repo.CreateDrink(drinkData);
+      return drink;
+    }
+
+    internal List<Drink> GetMyDrinks(string userId)
+    {
+      List<Drink> drinks = _repo.GetMyDrinks(userId);
+      return drinks;
     }
   }
 }
