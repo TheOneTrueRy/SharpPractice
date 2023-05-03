@@ -43,5 +43,21 @@ namespace SharpPractice.Controllers
         return BadRequest(e.Message);
       }
     }
+
+    [HttpDelete("{id}")]
+    [Authorize]
+    public async Task<ActionResult<String>> DeleteBurger(int id)
+    {
+      try
+      {
+        Account userInfo = await _auth.GetUserInfoAsync<Account>(HttpContext);
+        String message = _burgersService.DeleteBurger(id, userInfo.Id);
+        return Ok(message);
+      }
+      catch (Exception e)
+      {
+        return BadRequest(e.Message);
+      }
+    }
   }
 }

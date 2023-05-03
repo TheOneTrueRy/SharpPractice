@@ -16,6 +16,7 @@ namespace SharpPractice.Repositories
       (creatorId, buns, patties, cheeseSlices, onions, pickles, ketchup, specialRequest)
       VALUES
       (@creatorId, @buns, @patties, @cheeseSlices, @onions, @pickles, @ketchup, @specialRequest);
+      SELECT LAST_INSERT_ID();
       ";
       int id = _db.ExecuteScalar<int>(sql, burgerData);
       burgerData.Id = id;
@@ -43,6 +44,41 @@ namespace SharpPractice.Repositories
       ";
       List<Burger> burgers = _db.Query<Burger>(sql, new { userId }).ToList();
       return burgers;
+    }
+
+    internal List<Burger> GetMyOrderedBurgers(string userId)
+    {
+      string sql = @"
+      SELECT
+      *
+      FROM burgers
+      WHERE creatorId = @userId AND checkedOut = false;
+      ";
+      List<Burger> burgers = _db.Query<Burger>(sql, new { userId }).ToList();
+      return burgers;
+    }
+
+    internal Burger GetOneBurger(int burgerId)
+    {
+      string sql = @"
+      SELECT
+      *
+      FROM burgers
+      WHERE id = @burgerId;
+      ";
+      Burger burger = _db.Query<Burger>(sql, new { burgerId }).FirstOrDefault();
+      return burger;
+    }
+
+    internal bool DeleteBurger(int burgerId)
+    {
+      string sql = @"
+      DELETE
+      FROM burgers
+      WHERE id = @burgerId;
+      ";
+      int rows = _db.Execute(sql, new { burgerId });
+      return rows == 1;
     }
   }
 }
