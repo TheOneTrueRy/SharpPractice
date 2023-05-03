@@ -32,5 +32,17 @@ namespace SharpPractice.Repositories
       List<Burger> burgers = _db.Query<Burger>(sql).ToList();
       return burgers;
     }
+
+    internal List<Burger> GetMyBurgers(string userId)
+    {
+      string sql = @"
+      SELECT
+      *
+      FROM burgers
+      WHERE creatorId = @userId;
+      ";
+      List<Burger> burgers = _db.Query<Burger>(sql, new { userId }).ToList();
+      return burgers;
+    }
   }
 }
