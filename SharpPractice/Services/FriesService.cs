@@ -4,6 +4,11 @@ namespace SharpPractice.Services
   {
     private readonly FriesRepository _repo;
 
+    public FriesService(FriesRepository repo)
+    {
+      _repo = repo;
+    }
+
     internal List<Fries> GetMyFries(string id)
     {
       throw new NotImplementedException();

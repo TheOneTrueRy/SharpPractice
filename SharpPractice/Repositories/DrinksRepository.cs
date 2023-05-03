@@ -4,6 +4,11 @@ namespace SharpPractice.Repositories
   {
     private readonly IDbConnection _db;
 
+    public DrinksRepository(IDbConnection db)
+    {
+      _db = db;
+    }
+
     internal Drink CreateDrink(Drink drinkData)
     {
       string sql = @"
