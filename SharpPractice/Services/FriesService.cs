@@ -9,9 +9,16 @@ namespace SharpPractice.Services
       _repo = repo;
     }
 
-    internal List<Fries> GetMyFries(string id)
+    internal Fries CreateFries(Fries friesData)
     {
-      throw new NotImplementedException();
+      Fries fries = _repo.CreateFries(friesData);
+      return fries;
+    }
+
+    internal List<Fries> GetMyFries(string userId)
+    {
+      List<Fries> fries = _repo.GetMyFries(userId);
+      return fries;
     }
   }
 }
