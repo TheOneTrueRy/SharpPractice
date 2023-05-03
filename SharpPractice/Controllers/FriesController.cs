@@ -6,5 +6,11 @@ namespace SharpPractice.Controllers
   {
     private readonly FriesService _friesService;
     private readonly Auth0Provider _auth;
+
+    public FriesController(FriesService friesService, Auth0Provider auth)
+    {
+      _friesService = friesService;
+      _auth = auth;
+    }
   }
 }

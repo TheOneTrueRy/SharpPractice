@@ -7,6 +7,16 @@ namespace SharpPractice.Controllers
     private readonly DrinksService _drinksService;
     private readonly Auth0Provider _auth;
 
+    public DrinksController()
+    {
+    }
+
+    public DrinksController(DrinksService drinksService, Auth0Provider auth)
+    {
+      _drinksService = drinksService;
+      _auth = auth;
+    }
+
     [HttpPost]
     [Authorize]
     public async Task<ActionResult<Drink>> CreateDrink([FromBody] Drink drinkData)
