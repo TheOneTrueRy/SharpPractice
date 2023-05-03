@@ -38,7 +38,7 @@ public class AccountController : ControllerBase
     {
       Account userInfo = await _auth0Provider.GetUserInfoAsync<Account>(HttpContext);
       List<Burger> burgers = _burgersService.GetMyBurgers(userInfo.Id);
-      return burgers;
+      return Ok(burgers);
     }
     catch (Exception e)
     {
