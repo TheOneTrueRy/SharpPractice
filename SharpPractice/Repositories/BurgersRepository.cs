@@ -21,5 +21,16 @@ namespace SharpPractice.Repositories
       burgerData.Id = id;
       return burgerData;
     }
+
+    internal List<Burger> GetAllBurgers()
+    {
+      string sql = @"
+      SELECT 
+      *
+      FROM burgers;
+      ";
+      List<Burger> burgers = _db.Query<Burger>(sql).ToList();
+      return burgers;
+    }
   }
 }

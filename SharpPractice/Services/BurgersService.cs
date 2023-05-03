@@ -14,5 +14,11 @@ namespace SharpPractice.Services
       Burger burger = _repo.CreateBurger(burgerData);
       return burger;
     }
+
+    internal List<Burger> GetAllBurgers()
+    {
+      List<Burger> burgers = _repo.GetAllBurgers();
+      return burgers;
+    }
   }
 }

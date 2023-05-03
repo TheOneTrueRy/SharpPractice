@@ -29,5 +29,19 @@ namespace SharpPractice.Controllers
         return BadRequest(e.Message);
       }
     }
+
+    [HttpGet]
+    public ActionResult<List<Burger>> GetAllBurgers()
+    {
+      try
+      {
+        List<Burger> burgers = _burgersService.GetAllBurgers();
+        return Ok(burgers);
+      }
+      catch (Exception e)
+      {
+        return BadRequest(e.Message);
+      }
+    }
   }
 }
