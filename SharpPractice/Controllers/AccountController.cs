@@ -93,9 +93,18 @@ public class AccountController : ControllerBase
       List<Drink> drinks = _drinksService.GetMyOrderedDrinks(userInfo.Id);
       List<Fries> fries = _friesService.GetMyOrderedFries(userInfo.Id);
       List<object> order = new List<object>();
-      order.Add(burgers);
-      order.Add(drinks);
-      order.Add(fries);
+      burgers.ForEach(b =>
+      {
+        order.Add(b);
+      });
+      drinks.ForEach(d =>
+      {
+        order.Add(d);
+      });
+      fries.ForEach(f =>
+      {
+        order.Add(f);
+      });
       return Ok(order);
     }
     catch (Exception e)
