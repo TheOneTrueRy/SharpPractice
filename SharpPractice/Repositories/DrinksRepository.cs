@@ -25,7 +25,26 @@ namespace SharpPractice.Repositories
 
     internal List<Drink> GetMyDrinks(string userId)
     {
-      throw new NotImplementedException();
+      string sql = @"
+      SELECT
+      *
+      FROM drinks
+      WHERE creatorId = @userId;
+      ";
+      List<Drink> drinks = _db.Query<Drink>(sql, new { userId }).ToList();
+      return drinks;
+    }
+
+    internal List<Drink> GetMyOrderedDrinks(string userId)
+    {
+      string sql = @"
+      SELECT
+      *
+      FROM drinks
+      WHERE creatorId = @userId AND checkedOut = false;
+      ";
+      List<Drink> drinks = _db.Query<Drink>(sql, new { userId }).ToList();
+      return drinks;
     }
   }
 }

@@ -81,4 +81,26 @@ public class AccountController : ControllerBase
       return BadRequest(e.Message);
     }
   }
+
+  [HttpGet("order")]
+  [Authorize]
+  public async Task<ActionResult<List<object>>> GetMyOrder()
+  {
+    try
+    {
+      Account userInfo = await _auth0Provider.GetUserInfoAsync<Account>(HttpContext);
+      List<Burger> burgers = _burgersService.GetMyOrderedBurgers(userInfo.Id);
+      List<Drink> drinks = _drinksService.GetMyOrderedDrinks(userInfo.Id);
+      List<Fries> fries = _friesService.GetMyOrderedFries(userInfo.Id);
+      List<object> order = new List<object>();
+      order.Add(burgers);
+      order.Add(drinks);
+      order.Add(fries);
+      return Ok(order);
+    }
+    catch (Exception e)
+    {
+      return BadRequest(e.Message);
+    }
+  }
 }

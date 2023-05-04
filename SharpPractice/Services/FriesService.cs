@@ -20,5 +20,11 @@ namespace SharpPractice.Services
       List<Fries> fries = _repo.GetMyFries(userId);
       return fries;
     }
+
+    internal List<Fries> GetMyOrderedFries(string userId)
+    {
+      List<Fries> fries = _repo.GetMyOrderedFries(userId);
+      return fries;
+    }
   }
 }

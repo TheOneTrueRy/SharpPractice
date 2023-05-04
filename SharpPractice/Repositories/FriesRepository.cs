@@ -34,5 +34,17 @@ namespace SharpPractice.Repositories
       List<Fries> fries = _db.Query<Fries>(sql, new { userId }).ToList();
       return fries;
     }
+
+    internal List<Fries> GetMyOrderedFries(string userId)
+    {
+      string sql = @"
+      SELECT
+      *
+      FROM fries
+      WHERE creatorId = @userId AND checkedOut = false;
+      ";
+      List<Fries> fries = _db.Query<Fries>(sql, new { userId }).ToList();
+      return fries;
+    }
   }
 }
