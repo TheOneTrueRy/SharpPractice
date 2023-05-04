@@ -46,5 +46,16 @@ namespace SharpPractice.Repositories
       List<Drink> drinks = _db.Query<Drink>(sql, new { userId }).ToList();
       return drinks;
     }
+
+    internal bool CheckOut(string userId)
+    {
+      string sql = @"
+      UPDATE drinks SET
+      checkedOut = true
+      WHERE creatorId = @userId;
+      ";
+      int rows = _db.Execute(sql, new { userId });
+      return rows > 0;
+    }
   }
 }

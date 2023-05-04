@@ -46,5 +46,16 @@ namespace SharpPractice.Repositories
       List<Fries> fries = _db.Query<Fries>(sql, new { userId }).ToList();
       return fries;
     }
+
+    internal bool CheckOut(string userId)
+    {
+      string sql = @"
+      UPDATE fries SET
+      checkedOut = true
+      WHERE creatorId = @userId;
+      ";
+      int rows = _db.Execute(sql, new { userId });
+      return rows > 0;
+    }
   }
 }

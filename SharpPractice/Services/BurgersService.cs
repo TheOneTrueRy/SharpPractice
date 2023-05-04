@@ -53,5 +53,11 @@ namespace SharpPractice.Services
       }
       return $"Successfully deleted the burger at with the Id of {burger.Id}";
     }
+
+    internal bool CheckOut(string userId)
+    {
+      bool result = _repo.CheckOut(userId);
+      return result;
+    }
   }
 }

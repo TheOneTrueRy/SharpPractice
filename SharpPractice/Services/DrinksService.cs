@@ -26,5 +26,11 @@ namespace SharpPractice.Services
       List<Drink> drinks = _repo.GetMyOrderedDrinks(userId);
       return drinks;
     }
+
+    internal bool CheckOut(string userId)
+    {
+      bool result = _repo.CheckOut(userId);
+      return result;
+    }
   }
 }

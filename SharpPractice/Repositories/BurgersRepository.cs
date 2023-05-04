@@ -80,5 +80,16 @@ namespace SharpPractice.Repositories
       int rows = _db.Execute(sql, new { burgerId });
       return rows == 1;
     }
+
+    internal bool CheckOut(string userId)
+    {
+      string sql = @"
+      UPDATE burgers SET
+      checkedOut = true
+      WHERE creatorId = @userId;
+      ";
+      int rows = _db.Execute(sql, new { userId });
+      return rows > 0;
+    }
   }
 }
